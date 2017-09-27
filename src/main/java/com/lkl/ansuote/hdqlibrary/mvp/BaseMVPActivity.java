@@ -1,8 +1,8 @@
 package com.lkl.ansuote.hdqlibrary.mvp;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * MVP 架构框架类
