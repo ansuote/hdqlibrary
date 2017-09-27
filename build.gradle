@@ -57,4 +57,8 @@ dependencies {
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
     //没有使用特殊Header，可以不加这行
     compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+
+    //权限
+    compile 'com.yanzhenjie:permission:1.1.0'
+
 }
