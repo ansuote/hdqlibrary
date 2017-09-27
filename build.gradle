@@ -33,7 +33,8 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     //butterknife
-    compile 'com.jakewharton:butterknife:8.5.1'
+    //compile 'com.jakewharton:butterknife:8.5.1'
+    compile 'com.jakewharton:butterknife:7.0.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
     //CymChad
@@ -45,4 +46,6 @@ dependencies {
     //ImageLoader
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
+    //通用工具类
+    compile 'com.blankj:utilcode:1.9.1'
 }

@@ -4,4 +4,7 @@
     <string name="dialog_gps_msg">请打开GPS开关，确保正确定位</string>
     <string name="ensure">确定</string>
     <string name="cancel">取消</string>
+
+    <string name="remain_edit_hint">Say something about this book</string>
+
 </resources>
