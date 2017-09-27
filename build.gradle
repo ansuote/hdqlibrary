@@ -36,9 +36,13 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
+    //CymChad
     //在外层 bulid.gradle 的 allprojects -> repositories ->
     //还需要设置maven { url "https://jitpack.io" }
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.28'
+
+    //ImageLoader
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
 }
