@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -357,5 +359,79 @@ public class Utils {
             offset += array.length;
         }
         return result;
+    }
+
+    // 保存Bitmap到本地
+    public static void saveBitmap(Bitmap bitmap, String filePath) {
+        try {
+            FileOutputStream output = new FileOutputStream(filePath);
+            // 保存图像，第一个参数表示保存的格式，第二个参数表示保存的质量，第三个参数表示保存的位置
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, output);
+            output.flush();
+            output.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // 把图片压缩到指定大小
+    public static Bitmap revitionImageSize(String path, int max) {
+        // 解析原始图像
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        Bitmap map = BitmapFactory.decodeFile(path, options);
+        int widthRatio = (int) Math.ceil(options.outWidth / 500);
+        int heightRatio = (int) Math.ceil(options.outHeight / 500);
+        options.inSampleSize = 1;
+        if (widthRatio > 1 || heightRatio > 1) {
+            if (widthRatio > heightRatio) {
+                // inSampleSize配置最后显示的像素比例，最后显示的大小为原图的1/inSampleSize，注意inSampleSize一定要大于1
+                options.inSampleSize = widthRatio;
+            } else {
+                options.inSampleSize = heightRatio;
+            }
+        }
+        // 关闭解析边框的模式，以便于根据配置获取像素信息
+        options.inJustDecodeBounds = false;
+        map = BitmapFactory.decodeFile(path, options);
+        // 取得经过第一次压缩后的宽高
+        int Width = map.getWidth();
+        int Height = map.getHeight();
+        ByteArrayOutputStream bao = new ByteArrayOutputStream();
+        map.compress(Bitmap.CompressFormat.JPEG, 100, bao);
+        try {
+            bao.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Bitmap newMap = null;
+        int times = 0;
+        while (bao.toByteArray().length > max) {
+            bao.reset();
+            times++;
+            if (newMap != null) {
+            }
+            newMap = Bitmap.createScaledBitmap(map,
+                    (int) (Width * (1 - times * 0.15)),
+                    (int) (Height * (1 - times * 0.15)), true);
+            newMap.compress(Bitmap.CompressFormat.JPEG, 100, bao);
+            try {
+                bao.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        bao.reset();
+        try {
+            bao.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (newMap == null) {
+            return map;
+        } else {
+            return newMap;
+        }
+
     }
 }

@@ -27,15 +27,16 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
+    compile 'com.android.support:support-v4:25.3.1'
     compile 'com.android.support:design:25.3.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-v13:25.3.1'
     testCompile 'junit:junit:4.12'
 
     //butterknife
     //compile 'com.jakewharton:butterknife:8.5.1'
+    //annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     compile 'com.jakewharton:butterknife:7.0.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 
     //CymChad
     //在外层 bulid.gradle 的 allprojects -> repositories ->
@@ -47,7 +48,7 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
     //通用工具类
-    compile 'com.blankj:utilcode:1.9.1'
+    compile 'com.blankj:utilcode:1.9.3'
 
     //RxJava 2.0
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
