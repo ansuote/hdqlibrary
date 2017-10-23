@@ -264,13 +264,15 @@ public class Utils {
         return bitmap;
     }
 
-
     /**
      * 把对象序列化到本地
+     * @param object
+     * @param localPath
+     * @return  true 写入成功 ; false 写入失败
      */
-    public static void writeObjToFile(Object object, String localPath) {
+    public static boolean writeObjToFile(Object object, String localPath) {
         if (TextUtils.isEmpty(localPath)) {
-            return;
+            return false;
         }
 
         ObjectOutputStream oos = null;
@@ -292,6 +294,8 @@ public class Utils {
             if (null != oos) {
                 oos.writeObject(object);
             }
+
+            return true;
         } catch (Exception e) {
 
         } finally {
@@ -305,6 +309,8 @@ public class Utils {
             {
             }
         }
+
+        return false;
     }
 
 
@@ -433,5 +439,71 @@ public class Utils {
             return newMap;
         }
 
+    }
+
+    /**
+     * 获取到"/data/data/<package name>/files/dirName”
+     * /data/user/0/com.lkl.ansuote.postwidget/files/abc
+     *
+     * 这个方法获取的目录不是在sdcard上，而是在应用安装的目录，不需要权限
+     *
+     * @param context
+     * @param fileName
+     * @return
+     */
+    public static String getFilePath(Context context, String fileName) {
+        if (null != context && !TextUtils.isEmpty(fileName)) {
+            return context.getFilesDir().getPath() + File.separator + fileName;
+        }
+        return null;
+    }
+
+    /**
+     * 获取到"/data/data/<package name>/cache/fileName”
+     * /data/user/0/com.lkl.ansuote.postwidget/cache/abc
+     *
+     * 这个方法获取的目录不是在sdcard上，而是在应用安装的目录，
+     * 这个文件里面的数据在设备内存不足的时候，会被系统删除数据。
+     * @param context
+     * @param fileName
+     * @return
+     */
+    public static String getCachePath(Context context, String fileName) {
+        if (null != context && !TextUtils.isEmpty(fileName)) {
+            return context.getCacheDir().getPath() + File.separator + fileName;
+        }
+
+        return null;
+    }
+
+    /**
+     * 获取 SDCard/Android/data/你的应用的包名/files/fileName/ 目录，一般放一些长时间保存的数据
+     * /storage/emulated/0/Android/data/com.lkl.ansuote.postwidget/files/abc
+     *
+     * @param context
+     * @param fileName
+     * @return
+     */
+    public static String getExternalFilesPath(Context context, String fileName) {
+        if (null != context && !TextUtils.isEmpty(fileName)) {
+            return context.getExternalFilesDir(fileName).getPath();
+        }
+        return null;
+    }
+
+    /**
+     * 获取 SDCard/Android/data/你的应用包名/cache/fileName
+     * /storage/emulated/0/Android/data/com.lkl.ansuote.postwidget/cache/abc
+     *
+     * 这个方法获取的目录不是在sdcard上，而是在应用安装的目录
+     * @param context
+     * @param fileName
+     * @return
+     */
+    public static String getExternalCachePath(Context context, String fileName) {
+        if (null != context && !TextUtils.isEmpty(fileName)) {
+            return context.getExternalCacheDir().getPath() + File.separator + fileName;
+        }
+        return null;
     }
 }
