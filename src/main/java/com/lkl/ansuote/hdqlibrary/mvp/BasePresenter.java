@@ -5,6 +5,9 @@ import android.os.Bundle;
 
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 
 /**
  * Created by huangdongqiang on 15/05/2017.
@@ -12,12 +15,40 @@ import java.lang.ref.WeakReference;
 public abstract class BasePresenter<V> {
     protected Reference<V> mViewRef;
 
+    private V mProxyView;
+
     /**
      * 建立联系
      * @param view
      */
     public void attachView(V view) {
         mViewRef = new WeakReference<V>(view);
+
+        ClassLoader loader = view.getClass().getClassLoader();
+        Class<?>[] interfaces = view.getClass().getInterfaces();
+        ViewInvocationHandler handler = new ViewInvocationHandler(mViewRef);
+        mProxyView = (V) Proxy.newProxyInstance(loader, interfaces, handler);
+    }
+
+    /**
+     * 运用反射，只在界面 Attached 的时候才调用界面的方法。
+     * 外面就不用再每次判断 isViewAttached
+     */
+    private class ViewInvocationHandler implements InvocationHandler {
+
+        private Reference<V>  view;
+
+        public ViewInvocationHandler(Reference<V>  view){
+            this.view = view;
+        }
+
+        @Override
+        public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
+            if (null != this.view && null != this.view.get()){
+                return method.invoke(view.get(), objects);
+            }
+            return null;
+        }
     }
 
     /**
@@ -37,18 +68,21 @@ public abstract class BasePresenter<V> {
      * @return
      */
     protected V getView() {
-        if (null != mViewRef) {
+        /*if (null != mViewRef) {
             return mViewRef.get();
         }
-        return null;
+        return null;*/
+        return mProxyView;
     }
 
     /**
      * 判断是否建立联系
+     * 注意：因为使用了反射，外面在使用的时候，不需要手动用该方法进行判断。
      * @return
      */
     public boolean isViewAttached(){
         return null != mViewRef && null != mViewRef.get();
+        //return null != mProxyView;
     }
 
     /**
@@ -59,5 +93,8 @@ public abstract class BasePresenter<V> {
             mViewRef.clear();
             mViewRef = null;
         }
+
+        //此处不能销毁代理对象，因为界面消失后，仍然有可能存在异步调用界面的方法
+        //mProxyView = null;
     }
 }

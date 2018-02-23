@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
  * MVP 架构框架类
  * Created by huangdongqiang on 15/05/2017.
  */
-public abstract class BaseMVPActivity<V, P extends BasePresenter<V>> extends AppCompatActivity {
+public abstract class BaseMVPActivity<V, P extends BasePresenter<V>> extends AppCompatActivity implements IBaseActivityView {
     protected P mPresenter;
 
     @Override
