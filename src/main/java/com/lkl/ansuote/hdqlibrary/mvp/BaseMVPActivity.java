@@ -2,13 +2,14 @@ package com.lkl.ansuote.hdqlibrary.mvp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import com.lkl.ansuote.hdqlibrary.base.BaseActivity;
 
 /**
  * MVP 架构框架类
  * Created by huangdongqiang on 15/05/2017.
  */
-public abstract class BaseMVPActivity<V, P extends BasePresenter<V>> extends AppCompatActivity implements IBaseActivityView {
+public abstract class BaseMVPActivity<V, P extends BasePresenter<V>> extends BaseActivity implements IBaseActivityView {
     protected P mPresenter;
 
     @Override
