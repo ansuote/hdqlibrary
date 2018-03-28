@@ -31,7 +31,7 @@ public abstract class BasePresenter<V> {
     }
 
     /**
-     * 运用反射，只在界面 Attached 的时候才调用界面的方法。
+     * 运用动态代理，只在界面 Attached 的时候才调用界面的方法。
      * 外面就不用再每次判断 isViewAttached
      */
     private class ViewInvocationHandler implements InvocationHandler {
@@ -61,7 +61,7 @@ public abstract class BasePresenter<V> {
     /**
      * 让 View 可以设置默认状态
      */
-    public abstract void onStart();
+    public abstract void onCreate();
 
     /**
      * 获取View
@@ -77,7 +77,7 @@ public abstract class BasePresenter<V> {
 
     /**
      * 判断是否建立联系
-     * 注意：因为使用了反射，外面在使用的时候，不需要手动用该方法进行判断。
+     * 注意：因为使用了动态代理，外面在使用的时候，不需要手动用该方法进行判断。
      * @return
      */
     public boolean isViewAttached(){

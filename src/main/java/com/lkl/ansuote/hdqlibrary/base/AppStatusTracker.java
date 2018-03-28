@@ -88,11 +88,11 @@ public class AppStatusTracker implements Application.ActivityLifecycleCallbacks 
 
     @Override
     public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
+        Logger.i("onActivitySaveInstanceState: ");
     }
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-
+        Logger.i("onActivityDestroyed: ");
     }
 }

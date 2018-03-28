@@ -21,7 +21,7 @@ public abstract class BaseMVPActivity<V, P extends BasePresenter<V>> extends Bas
         if (null != mPresenter) {
             mPresenter.attachView((V)this);
             mPresenter.initVariables(savedInstanceState, getIntent());
-            mPresenter.onStart();
+            mPresenter.onCreate();
         }
 
     }
