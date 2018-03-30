@@ -9,7 +9,9 @@ import com.orhanobut.logger.Logger;
 
 /**
  * 跟踪全部 Activity 的生命周期
- * Created by huangdongqiang on 23/02/2018.
+ *
+ * @author huangdongqiang
+ * @date 2018/3/30
  */
 public class AppStatusTracker implements Application.ActivityLifecycleCallbacks {
     private Application mApplication;

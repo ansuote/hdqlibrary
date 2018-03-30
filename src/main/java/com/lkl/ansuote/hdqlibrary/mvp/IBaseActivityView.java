@@ -1,7 +1,10 @@
 package com.lkl.ansuote.hdqlibrary.mvp;
 
 /**
- * Created by huangdongqiang on 20/02/2018.
+ * MVP 架构框架 界面基类接口
+ *
+ * @author huangdongqiang
+ * @date 2018/3/30
  */
 public interface IBaseActivityView {
     /**

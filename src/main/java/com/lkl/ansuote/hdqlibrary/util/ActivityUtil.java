@@ -6,7 +6,10 @@ import android.net.Uri;
 import android.provider.Settings;
 
 /**
- * Created by huangdongqiang on 27/09/2017.
+ * Actvity 工具类
+ *
+ * @author huangdongqiang
+ * @date 2018/3/30
  */
 public class ActivityUtil {
     /**

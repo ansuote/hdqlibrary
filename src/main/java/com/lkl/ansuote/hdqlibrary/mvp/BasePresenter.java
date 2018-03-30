@@ -10,7 +10,10 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 /**
- * Created by huangdongqiang on 15/05/2017.
+ * MVP 架构框架 基类 presenter
+ *
+ * @author huangdongqiang
+ * @date 2018/3/30
  */
 public abstract class BasePresenter<V> {
     protected Reference<V> mViewRef;
@@ -62,6 +65,11 @@ public abstract class BasePresenter<V> {
      * 让 View 可以设置默认状态
      */
     public abstract void onCreate();
+
+    /**
+     * 依赖注入当前presenter 用 inject 声明的变量
+     */
+    public abstract void inject();
 
     /**
      * 获取View

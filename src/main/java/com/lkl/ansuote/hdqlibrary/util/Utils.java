@@ -22,7 +22,10 @@ import java.io.ObjectOutputStream;
 import java.util.Arrays;
 
 /**
- * Created by huangdongqiang on 15/05/2017.
+ * 通用工具类
+ *
+ * @author huangdongqiang
+ * @date 2018/3/30
  */
 public class Utils {
 

@@ -7,7 +7,9 @@ import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
 
 /**
- * Created by huangdongqiang on 23/02/2018.
+ * Application 基类
+ * @author huangdongqiang
+ * @date 2018/3/30
  */
 public class BaseApplication extends Application {
 

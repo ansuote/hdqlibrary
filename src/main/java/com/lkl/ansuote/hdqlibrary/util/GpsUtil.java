@@ -10,7 +10,10 @@ import com.lkl.ansuote.hdqlibrary.R;
 
 
 /**
- * Created by huangdongqiang on 14/07/2017.
+ * GPS 工具类
+ *
+ * @author huangdongqiang
+ * @date 2018/3/30
  */
 public class GpsUtil {
     /**

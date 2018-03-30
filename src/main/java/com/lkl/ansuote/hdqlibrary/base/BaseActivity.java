@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import com.orhanobut.logger.Logger;
 
 /**
- * Created by huangdongqiang on 23/02/2018.
+ * Activity 基类
+ * @author huangdongqiang
+ * @date 2018/3/30
  */
 public class BaseActivity extends AppCompatActivity {
 

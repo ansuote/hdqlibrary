@@ -7,7 +7,9 @@ import com.lkl.ansuote.hdqlibrary.base.BaseActivity;
 
 /**
  * MVP 架构框架类
- * Created by huangdongqiang on 15/05/2017.
+ *
+ * @author huangdongqiang
+ * @date 2018/3/30
  */
 public abstract class BaseMVPActivity<V, P extends BasePresenter<V>> extends BaseActivity implements IBaseActivityView {
     protected P mPresenter;
@@ -20,6 +22,7 @@ public abstract class BaseMVPActivity<V, P extends BasePresenter<V>> extends Bas
         mPresenter = createPresenter();
         if (null != mPresenter) {
             mPresenter.attachView((V)this);
+            mPresenter.inject();
             mPresenter.initVariables(savedInstanceState, getIntent());
             mPresenter.onCreate();
         }
@@ -45,9 +48,4 @@ public abstract class BaseMVPActivity<V, P extends BasePresenter<V>> extends Bas
      * 初始化界面
      */
     protected abstract void initView();
-
-    /**
-     * 初始化变量
-     */
-    //protected abstract void initVariables(Bundle savedInstanceState);
 }
