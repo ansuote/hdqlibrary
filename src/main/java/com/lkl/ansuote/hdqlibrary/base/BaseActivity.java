@@ -1,5 +1,6 @@
 package com.lkl.ansuote.hdqlibrary.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +26,7 @@ public class BaseActivity extends AppCompatActivity {
      * @param context
      * @param cls
      */
-    public static void actionStrat(Context context, Class cls) {
+    public static void actionStrat(Context context, Class<? extends Activity> cls) {
         if (null != context) {
             Intent intent = new Intent(context, cls);
             if (null != intent) {

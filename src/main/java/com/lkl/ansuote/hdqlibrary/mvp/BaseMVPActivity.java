@@ -45,7 +45,7 @@ public abstract class BaseMVPActivity<V, P extends BasePresenter<V>> extends Bas
     protected abstract P createPresenter();
 
     /**
-     * 初始化界面
+     * 初始化界面 设置 setContentView
      */
     protected abstract void initView();
 }
