@@ -2,6 +2,7 @@ package com.lkl.ansuote.hdqlibrary.base;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
 import com.lkl.ansuote.hdqlibrary.BuildConfig;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
@@ -23,6 +24,8 @@ public class BaseApplication extends Application {
                 return BuildConfig.DEBUG;
             }
         });
+
+        Utils.init(this);
     }
 
 }
