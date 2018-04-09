@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
-import com.orhanobut.logger.Logger;
-
 
 /**
  * 跟踪全部 Activity 的生命周期
@@ -58,25 +56,25 @@ public class AppStatusTracker implements Application.ActivityLifecycleCallbacks 
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-        Logger.i("onActivityCreated: " + activity);
+        //Logger.i("onActivityCreated: " + activity);
     }
 
     @Override
     public void onActivityStarted(Activity activity) {
 
-        Logger.i("onActivityStarted: " + activity);
+        //Logger.i("onActivityStarted: " + activity);
         mForgroundCount++;
     }
 
     @Override
     public void onActivityResumed(Activity activity) {
-        Logger.i("onActivityResumed: " + activity);
+        //Logger.i("onActivityResumed: " + activity);
         setForground(true);
     }
 
     @Override
     public void onActivityPaused(Activity activity) {
-        Logger.i( "onActivityPaused: " + activity);
+        //Logger.i( "onActivityPaused: " + activity);
         mForgroundCount--;
         if (mForgroundCount == 0) {
             mIsForground = false;
@@ -85,16 +83,16 @@ public class AppStatusTracker implements Application.ActivityLifecycleCallbacks 
 
     @Override
     public void onActivityStopped(Activity activity) {
-        Logger.i("onActivityStopped: " + activity);
+        //Logger.i("onActivityStopped: " + activity);
     }
 
     @Override
     public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-        Logger.i("onActivitySaveInstanceState: ");
+        //Logger.i("onActivitySaveInstanceState: ");
     }
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-        Logger.i("onActivityDestroyed: ");
+        //Logger.i("onActivityDestroyed: ");
     }
 }

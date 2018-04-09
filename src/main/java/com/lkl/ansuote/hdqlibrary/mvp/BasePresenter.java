@@ -9,21 +9,25 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+
 /**
  * MVP 架构框架 基类 presenter
  *
  * @author huangdongqiang
  * @date 2018/3/30
  */
-public abstract class BasePresenter<V> {
+public abstract class BasePresenter<V> implements IBasePresenter<V>{
     protected Reference<V> mViewRef;
-
     private V mProxyView;
+    private CompositeDisposable compositeDisposable;
 
     /**
      * 建立联系
      * @param view
      */
+    @Override
     public void attachView(V view) {
         mViewRef = new WeakReference<V>(view);
 
@@ -67,11 +71,6 @@ public abstract class BasePresenter<V> {
     public abstract void onCreate();
 
     /**
-     * 依赖注入当前presenter 用 inject 声明的变量
-     */
-    public abstract void inject();
-
-    /**
      * 获取View
      * @return
      */
@@ -93,9 +92,17 @@ public abstract class BasePresenter<V> {
         //return null != mProxyView;
     }
 
+    protected void addSubscribe(Disposable disposable) {
+        if (compositeDisposable == null) {
+            compositeDisposable = new CompositeDisposable();
+        }
+        compositeDisposable.add(disposable);
+    }
+
     /**
      * 销毁关联的view
      */
+    @Override
     public void detachView() {
         if (null != mViewRef) {
             mViewRef.clear();
@@ -104,5 +111,9 @@ public abstract class BasePresenter<V> {
 
         //此处不能销毁代理对象，因为界面消失后，仍然有可能存在异步调用界面的方法
         //mProxyView = null;
+
+        if (compositeDisposable != null) {
+            compositeDisposable.clear();
+        }
     }
 }

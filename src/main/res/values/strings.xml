@@ -6,5 +6,6 @@
     <string name="cancel">取消</string>
 
     <string name="remain_edit_hint">Say something about this book</string>
-
+    <string name="http_error">网络异常</string>
+    <string name="unKnown_error">未知错误</string>
 </resources>
