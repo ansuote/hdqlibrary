@@ -5,11 +5,14 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,9 +20,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * 通用工具类
@@ -48,6 +54,24 @@ public class Utils {
             } catch (Exception e1) {
                 return defaultValue;
             }
+        }
+    }
+
+    /**
+     * 安全转换成 double 型
+     * @param value
+     * @param defaultValue
+     * @return
+     */
+    public final static double convertToDouble(Object value, double defaultValue) {
+        if (value == null || "".equals(value.toString().trim())) {
+            return defaultValue;
+        }
+
+        try {
+            return Double.valueOf(value.toString());
+        } catch (Exception e) {
+            return defaultValue;
         }
     }
 
@@ -509,4 +533,72 @@ public class Utils {
         }
         return null;
     }
+
+
+    /**
+     * 读取本地文件中JSON字符串
+     *
+     * @param fileName
+     * @return
+     */
+    public static String getJsonFromAssets(Context context, String fileName) {
+
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            BufferedReader bf = new BufferedReader(new InputStreamReader(
+                    context.getAssets().open(fileName)));
+            String line;
+            while ((line = bf.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stringBuilder.toString();
+    }
+
+
+
+    /**
+     * html格式兼容
+     * @param html
+     * @return
+     */
+    @SuppressWarnings("deprecation")
+    public static Spanned fromHtml(String html){
+        Spanned result;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            result = Html.fromHtml(html,Html.FROM_HTML_MODE_LEGACY);
+        } else {
+            result = Html.fromHtml(html);
+        }
+        return result;
+    }
+
+
+    /**
+     * 将集合按指定数量分组
+     * @param list 数据集合
+     * @param quantity 分组数量
+     * @return 分组结果
+     */
+    public static <T> List<List<T>> groupListByQuantity(List<T> list, int quantity) {
+        if (list == null || list.size() == 0) {
+            return null;
+        }
+
+        if (quantity <= 0) {
+            new IllegalArgumentException("Wrong quantity.");
+        }
+
+        List<List<T>> wrapList = new ArrayList<List<T>>();
+        int count = 0;
+        while (count < list.size()) {
+            wrapList.add(new ArrayList<T>(list.subList(count, (count + quantity) > list.size() ? list.size() : count + quantity)));
+            count += quantity;
+        }
+
+        return wrapList;
+    }
+
 }

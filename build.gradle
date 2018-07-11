@@ -1,18 +1,23 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
+apply plugin: 'kotlin-android'
 
+//apply plugin: 'me.tatarka.retrolambda'
+//2.2 以上不需要
+//apply plugin: 'com.neenbedankt.android-apt'
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+//        jackOptions {
+//            enabled true
+//        }
     }
     buildTypes {
         release {
@@ -21,65 +26,116 @@ android {
         }
     }
 
-    productFlavors {
-        create('all') {
-
-        }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
+
+//    productFlavors {
+//        create('all') {
+//
+//        }
+//    }
     publishNonDefault true
+    buildToolsVersion '27.0.3'
 }
 
-configurations {
-    allDebug
-    allRelease
-}
-
+//configurations {
+//    allDebug
+//    allRelease
+//}
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    compile 'com.android.support:support-v4:25.3.1'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support:support-v13:25.3.1'
-    testCompile 'junit:junit:4.12'
+    //base
+    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:support-v13:$rootProject.supportLibraryVersion"
 
-    //butterknife
-    compile 'com.jakewharton:butterknife:8.5.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-    //compile 'com.jakewharton:butterknife:7.0.0'
+    //test
+    androidTestImplementation "junit:junit:$rootProject.junitVersion"
 
     //CymChad
     //在外层 bulid.gradle 的 allprojects -> repositories ->
     //还需要设置maven { url "https://jitpack.io" }
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.28'
-
-    //ImageLoader
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
+    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.cymChadVersion"
 
     //通用工具类
-    compile 'com.blankj:utilcode:1.9.3'
+    implementation "com.blankj:utilcode:$rootProject.utilcodeVersion"
+
+    //net
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-protobuf:$rootProject.retrofitVersion"
+    //implementation 'com.google.protobuf:protobuf-lite:3.0.0' //依赖protobuf-lite库
+
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
     //RxJava 2.0
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'io.reactivex.rxjava2:rxjava:2.1.0'
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
 
     //下拉刷新，上拉加载更多
-    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    implementation "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smartrefreshVersion"
     //没有使用特殊Header，可以不加这行
-    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+    implementation "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.smartrefreshVersion"
 
     //权限
-    compile 'com.yanzhenjie:permission:1.1.0'
+    implementation "com.yanzhenjie:permission:$rootProject.permissionVersion"
 
     //logger
-    compile 'com.orhanobut:logger:2.1.1'
+    implementation "com.orhanobut:logger:$rootProject.loggerVersion"
 
     //fastjson
-    compile 'com.alibaba:fastjson:1.1.64.android'
+    implementation "com.alibaba:fastjson:$rootProject.fastjsonVersion"
 
+
+    //dagger2
+    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+    implementation "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+    implementation "org.glassfish:javax.annotation:$rootProject.javaxVersion"
+    //banner
+    implementation "com.youth.banner:banner:$rootProject.bannerVersion"
+    //glide
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+
+    //glide 图片变换效果，如裁剪变换、颜色变换、模糊变换等
+    implementation 'jp.wasabeef:glide-transformations:3.0.1'
+    // If you want to use the GPU Filters
+    //implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+
+    //recycler divider
+    implementation "com.yqritc:recyclerview-flexibledivider:$rootProject.recyclerDividerVersion"
+
+    implementation "com.tencent.sonic:sdk:$rootProject.sonicVersion"
+
+    //eventbus
+    implementation "org.greenrobot:eventbus:$rootProject.eventbusVersion"
+
+    implementation "com.contrarywind:Android-PickerView:$rootProject.pickerViewVersion"
+
+    //implementation 'cn.qqtheme.framework:WheelPicker:latest.release'
+    implementation 'com.contrarywind:wheelview:4.0.5'
+
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //implementation 'com.github.mcxtzhang:ZLayoutManager:V1.1.0'
+    //implementation 'com.github.1002326270xc:LayoutManager-FlowLayout:v1.7'
+    implementation 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
 
 }
+repositories {
+    mavenCentral()
+}
+
+

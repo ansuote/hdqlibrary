@@ -1,6 +1,7 @@
 package com.lkl.ansuote.hdqlibrary.widget.dialog.base;
 
 import android.content.Context;
+import android.support.annotation.StyleRes;
 import android.view.View;
 
 /**
@@ -17,6 +18,17 @@ public class BaseDialogParams {
      * 宽度占据屏幕宽度的比例 （0～1）
      */
     public float widthScale = 0.8f;
+
+    /**
+     * 动画对应的资源文件
+     */
+    public @StyleRes
+    int resAnimId;
+
+    /**
+     * 高度占据屏幕宽度的比例 （0～1） 0.8
+     */
+    public float heightScale;
     /**
      * 对齐方向 Gravity.TOP Gravity.BOTTOM
      */

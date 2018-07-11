@@ -3,9 +3,9 @@ package com.lkl.ansuote.hdqlibrary.base;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-
-import com.orhanobut.logger.Logger;
 
 /**
  * Activity 基类
@@ -14,11 +14,33 @@ import com.orhanobut.logger.Logger;
  */
 public class BaseActivity extends AppCompatActivity {
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //ActivityCollector.addActivity(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    /**
+     * 显示手势指纹
+     */
+    protected void showGesture() {
+
+    }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Logger.i("onRestart -- " + this.toString());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //ActivityCollector.removeActivity(this);
     }
 
     /**
