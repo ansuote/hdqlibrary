@@ -49,89 +49,87 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     //base
-    implementation "com.android.support:support-v4:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
-    implementation "com.android.support:support-v13:$rootProject.supportLibraryVersion"
+    api "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    api "com.android.support:design:$rootProject.supportLibraryVersion"
+    api "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    api "com.android.support:support-v13:$rootProject.supportLibraryVersion"
 
     //test
-    androidTestImplementation "junit:junit:$rootProject.junitVersion"
+    api "junit:junit:$rootProject.junitVersion"
 
     //CymChad
     //在外层 bulid.gradle 的 allprojects -> repositories ->
     //还需要设置maven { url "https://jitpack.io" }
-    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
-    implementation "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.cymChadVersion"
+    api "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
+    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.cymChadVersion"
 
     //通用工具类
-    implementation "com.blankj:utilcode:$rootProject.utilcodeVersion"
+    api "com.blankj:utilcode:$rootProject.utilcodeVersion"
 
     //net
-    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
-    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
-    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
-    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-protobuf:$rootProject.retrofitVersion"
-    //implementation 'com.google.protobuf:protobuf-lite:3.0.0' //依赖protobuf-lite库
+    api "com.google.code.gson:gson:$rootProject.gsonVersion"
+    api "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+    api "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
+    api "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    api "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    api "com.squareup.retrofit2:converter-protobuf:$rootProject.retrofitVersion"
+    //api 'com.google.protobuf:protobuf-lite:3.0.0' //依赖protobuf-lite库
 
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
-    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+    api "com.github.bumptech.glide:glide:$rootProject.glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
     //RxJava 2.0
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
+    api "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    api "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
 
     //下拉刷新，上拉加载更多
-    implementation "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smartrefreshVersion"
+    api "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smartrefreshVersion"
     //没有使用特殊Header，可以不加这行
-    implementation "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.smartrefreshVersion"
+    api "com.scwang.smartrefresh:SmartRefreshHeader:$rootProject.smartrefreshVersion"
 
     //权限
-    implementation "com.yanzhenjie:permission:$rootProject.permissionVersion"
+    //implementation "com.yanzhenjie:permission:$rootProject.permissionVersion"
 
     //logger
-    implementation "com.orhanobut:logger:$rootProject.loggerVersion"
+    api "com.orhanobut:logger:$rootProject.loggerVersion"
 
     //fastjson
-    implementation "com.alibaba:fastjson:$rootProject.fastjsonVersion"
-
+    api "com.alibaba:fastjson:$rootProject.fastjsonVersion"
 
     //dagger2
-    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+    api "com.google.dagger:dagger:$rootProject.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
-    implementation "org.glassfish:javax.annotation:$rootProject.javaxVersion"
+    api "org.glassfish:javax.annotation:$rootProject.javaxVersion"
+
     //banner
-    implementation "com.youth.banner:banner:$rootProject.bannerVersion"
+    api "com.youth.banner:banner:$rootProject.bannerVersion"
     //glide
-    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    api "com.github.bumptech.glide:glide:$rootProject.glideVersion"
     annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
 
     //glide 图片变换效果，如裁剪变换、颜色变换、模糊变换等
-    implementation 'jp.wasabeef:glide-transformations:3.0.1'
+    api 'jp.wasabeef:glide-transformations:3.0.1'
     // If you want to use the GPU Filters
-    //implementation 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
+    //api 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1'
 
     //recycler divider
-    implementation "com.yqritc:recyclerview-flexibledivider:$rootProject.recyclerDividerVersion"
+    api "com.yqritc:recyclerview-flexibledivider:$rootProject.recyclerDividerVersion"
 
-    implementation "com.tencent.sonic:sdk:$rootProject.sonicVersion"
+    api "com.tencent.sonic:sdk:$rootProject.sonicVersion"
 
     //eventbus
-    implementation "org.greenrobot:eventbus:$rootProject.eventbusVersion"
+    api "org.greenrobot:eventbus:$rootProject.eventbusVersion"
 
-    implementation "com.contrarywind:Android-PickerView:$rootProject.pickerViewVersion"
+    api "com.contrarywind:Android-PickerView:$rootProject.pickerViewVersion"
 
     //implementation 'cn.qqtheme.framework:WheelPicker:latest.release'
-    implementation 'com.contrarywind:wheelview:4.0.5'
+    api 'com.contrarywind:wheelview:4.0.5'
 
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40'
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    //implementation 'com.github.mcxtzhang:ZLayoutManager:V1.1.0'
-    //implementation 'com.github.1002326270xc:LayoutManager-FlowLayout:v1.7'
-    implementation 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
+    api 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
 
 }
 repositories {
