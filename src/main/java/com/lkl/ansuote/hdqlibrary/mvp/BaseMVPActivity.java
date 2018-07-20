@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.lkl.ansuote.hdqlibrary.BaseActivity;
+import com.lkl.ansuote.hdqlibrary.base.BaseActivity;
 
 import javax.inject.Inject;
 
