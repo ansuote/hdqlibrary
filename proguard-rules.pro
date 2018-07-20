@@ -58,15 +58,6 @@
 }
 -dontwarn com.bumptech.glide.load.resource.bitmap.VideoDecoder
 
-# bugly
--dontwarn com.tencent.bugly.**
--keep public class com.tencent.bugly.**{*;}
-# tinker混淆规则
--dontwarn com.tencent.tinker.**
--keep class com.tencent.tinker.** { *; }
-# 如果你使用了support-v4包，你还需要配置以下混淆规则：
- -keep class android.support.**{*;}
-
 
 -dontwarn com.firebase.ui.auth.data.remote.**
 
@@ -107,17 +98,6 @@
 # A resource is loaded with a relative path so the package of this class must be preserved.
 -keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
 
-
-# ========================== 极光推送 ==========================
--dontoptimize
--dontpreverify
-
--dontwarn cn.jpush.**
--keep class cn.jpush.** { *; }
--keep class * extends cn.jpush.android.helpers.JPushMessageReceiver { *; }
-
--dontwarn cn.jiguang.**
--keep class cn.jiguang.** { *; }
 
 #==================gson && protobuf==========================
 -dontwarn com.google.**
