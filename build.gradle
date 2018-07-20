@@ -72,7 +72,7 @@ dependencies {
     api "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttpVersion"
     api "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     api "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
-    api "com.squareup.retrofit2:converter-protobuf:$rootProject.retrofitVersion"
+    //api "com.squareup.retrofit2:converter-protobuf:$rootProject.retrofitVersion"
     //api 'com.google.protobuf:protobuf-lite:3.0.0' //依赖protobuf-lite库
 
     api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
