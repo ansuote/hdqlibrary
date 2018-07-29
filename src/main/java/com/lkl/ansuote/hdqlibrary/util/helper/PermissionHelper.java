@@ -40,6 +40,11 @@ public class PermissionHelper {
         request(listener, PermissionConstants.LOCATION);
     }
 
+
+    public static void requestContacts(final OnPermissionGrantedListener listener) {
+        request(listener, PermissionConstants.CONTACTS);
+    }
+
     private static void request(final OnPermissionGrantedListener grantedListener,
                                 final @PermissionConstants.Permission String... permissions) {
         request(grantedListener, null, permissions);
