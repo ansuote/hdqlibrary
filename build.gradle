@@ -83,6 +83,9 @@ dependencies {
     api "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
     api "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
 
+    //网络日志拦截器
+    api 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+
     //下拉刷新，上拉加载更多
     api "com.scwang.smartrefresh:SmartRefreshLayout:$rootProject.smartrefreshVersion"
     //没有使用特殊Header，可以不加这行
@@ -98,9 +101,10 @@ dependencies {
     api "com.alibaba:fastjson:$rootProject.fastjsonVersion"
 
     //dagger2
-    api "com.google.dagger:dagger:$rootProject.daggerVersion"
+    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
-    api "org.glassfish:javax.annotation:$rootProject.javaxVersion"
+    implementation "org.glassfish:javax.annotation:$rootProject.javaxVersion"
+
 
     //banner
     api "com.youth.banner:banner:$rootProject.bannerVersion"
@@ -131,6 +135,9 @@ dependencies {
 
     api 'com.beloo.widget:ChipsLayoutManager:0.3.7@aar'
 
+    api "com.github.zyyoona7:EasyPopup:$easyPopupVersion"
+
+    api 'com.afollestad.material-dialogs:core:0.9.6.0'
 }
 repositories {
     mavenCentral()
