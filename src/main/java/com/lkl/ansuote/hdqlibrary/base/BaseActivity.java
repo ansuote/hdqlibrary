@@ -25,12 +25,6 @@ public class BaseActivity extends AppCompatActivity {
         super.onStart();
     }
 
-    /**
-     * 显示手势指纹
-     */
-    protected void showGesture() {
-
-    }
 
     @Override
     protected void onRestart() {
