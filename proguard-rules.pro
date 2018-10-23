@@ -254,3 +254,6 @@ public static java.lang.String TABLENAME;
 -keep  class net.sqlcipher.database.** {
     *;
 }
+#========================== FlycoTabLayout ==========================
+-keep class com.flyco.tablayout.** {*;}
+

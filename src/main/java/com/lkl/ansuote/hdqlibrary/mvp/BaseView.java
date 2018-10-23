@@ -113,7 +113,7 @@ public interface BaseView {
      * @param cls
      * @param flags
      */
-    void actionStart(Class<? extends Activity> cls, int flags);
+    //void actionStart(Class<? extends Activity> cls, int flags);
 
     /**
      * 开启只定界面
@@ -122,6 +122,13 @@ public interface BaseView {
      * @param requestCode
      */
     void actionStart(Class<? extends Activity> cls, Object data, int requestCode);
+
+    /**
+     * 开启只定界面
+     * @param cls
+     * @param data
+     */
+    void actionStart(Class<? extends Activity> cls, Object data);
 
     /**
      * 显示主体布局
