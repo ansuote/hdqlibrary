@@ -45,6 +45,8 @@ public class AppStatusTracker implements Application.ActivityLifecycleCallbacks 
      */
     private int mForgroundCount;
 
+    private OnAppStatusChangedListener mOnAppStatusChangedListener;
+
     private AppStatusTracker(Application application) {
         mApplication = application;
         application.registerActivityLifecycleCallbacks(this);
@@ -147,6 +149,10 @@ public class AppStatusTracker implements Application.ActivityLifecycleCallbacks 
     }
 
     public void setAppStatus(int status) {
+        if (null != mOnAppStatusChangedListener &&  this.mAppStatus != status) {
+            mOnAppStatusChangedListener.onAppStatusChanged(mAppStatus, status);
+        }
+
         this.mAppStatus = status;
 //        if (status == ConstantValues.STATUS_ONLINE) {
 //            if (mReceiver == null) {
@@ -198,6 +204,23 @@ public class AppStatusTracker implements Application.ActivityLifecycleCallbacks 
         return simpleName;
     }
 
+    /**
+     * 登录状态改变的监听
+     */
+    public interface OnAppStatusChangedListener {
+
+        /**
+         * app状态变化
+         * @param beforeStatus 变化之前的状态
+         * @param nowStatus    变化之后的状态
+         */
+        void onAppStatusChanged(int beforeStatus, int nowStatus);
+    }
+
+
+    public void setOnAppStatusChangedListener(OnAppStatusChangedListener listener) {
+        mOnAppStatusChangedListener = listener;
+    }
 
     /**
      * 监听系统屏幕关闭的广播
@@ -211,4 +234,6 @@ public class AppStatusTracker implements Application.ActivityLifecycleCallbacks 
 //            }
 //        }
 //    }
+
+
 }
