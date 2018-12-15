@@ -45,6 +45,11 @@ public class PermissionHelper {
         request(listener, PermissionConstants.CONTACTS);
     }
 
+    public static void requsetRecordAudio(final OnPermissionGrantedListener grantedListener,
+                                          final OnPermissionDeniedListener deniedListener) {
+        request(grantedListener, deniedListener, PermissionConstants.MICROPHONE);
+    }
+
     private static void request(final OnPermissionGrantedListener grantedListener,
                                 final @PermissionConstants.Permission String... permissions) {
         request(grantedListener, null, permissions);
