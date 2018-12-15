@@ -1,6 +1,7 @@
 package com.lkl.ansuote.hdqlibrary.util.image;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
@@ -43,8 +44,8 @@ public class ImageLoader {
      * @param imageView
      */
     public static void loadCircleCrop(Context context,
-                            String url,
-                            ImageView imageView) {
+                                      String url,
+                                      ImageView imageView) {
         RequestOptions options = new RequestOptions()
                 .circleCrop();
         Glide.with(context)
@@ -62,6 +63,13 @@ public class ImageLoader {
     public static void load(Context context, String url, ImageView iv, RequestOptions options) {    //使用Glide加载圆形ImageView(如头像)时，不要使用占位图
         Glide.with(context)
                 .load(url)
+                .apply(options)
+                .into(iv);
+    }
+
+    public static void load(Context context, Uri uri, ImageView iv, RequestOptions options) {    //使用Glide加载圆形ImageView(如头像)时，不要使用占位图
+        Glide.with(context)
+                .load(uri)
                 .apply(options)
                 .into(iv);
     }
