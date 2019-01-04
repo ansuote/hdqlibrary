@@ -41,7 +41,7 @@ public class Utils {
      * @param defaultValue
      * @return
      */
-    public final static int convertToInt(Object value, int defaultValue) {
+    public static int convertToInt(Object value, int defaultValue) {
         if (value == null || "".equals(value.toString().trim())) {
             return defaultValue;
         }
@@ -63,13 +63,49 @@ public class Utils {
      * @param defaultValue
      * @return
      */
-    public final static double convertToDouble(Object value, double defaultValue) {
+    public static double convertToDouble(Object value, double defaultValue) {
         if (value == null || "".equals(value.toString().trim())) {
             return defaultValue;
         }
 
         try {
             return Double.valueOf(value.toString());
+        } catch (Exception e) {
+            return defaultValue;
+        }
+    }
+
+    /**
+     * 安全转换成 float 型
+     * @param value
+     * @param defaultValue
+     * @return
+     */
+    public static float convertToFloat(Object value, float defaultValue) {
+        if (null == value || "".equals(value.toString().trim())) {
+            return defaultValue;
+        }
+
+        try {
+            return Float.valueOf(value.toString());
+        } catch (Exception e) {
+            return defaultValue;
+        }
+    }
+
+    /**
+     * 安全转换成 long 型
+     * @param value
+     * @param defaultValue
+     * @return
+     */
+    public static long convertToLong(Object value, long defaultValue) {
+        if (null == value || "".equals(value.toString().trim())) {
+            return defaultValue;
+        }
+
+        try {
+            return Long.valueOf(value.toString());
         } catch (Exception e) {
             return defaultValue;
         }

@@ -140,6 +140,8 @@ dependencies {
     api 'com.afollestad.material-dialogs:core:0.9.6.0'
 
     api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+
+    api "com.github.FlyingPumba:SimpleRatingBar:$simpleRatingBarVersion"
 }
 repositories {
     mavenCentral()
