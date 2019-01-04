@@ -1,5 +1,6 @@
 package com.lkl.ansuote.hdqlibrary.widget;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
@@ -21,6 +22,7 @@ public class SquareRelativeLayout extends RelativeLayout{
         super(context, attrs, defStyleAttr);
     }
 
+    @TargetApi(21)
     public SquareRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }

@@ -37,7 +37,7 @@ android {
 //        }
 //    }
     publishNonDefault true
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.3'
 }
 
 //configurations {
@@ -142,6 +142,8 @@ dependencies {
     api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
 
     api "com.github.FlyingPumba:SimpleRatingBar:$simpleRatingBarVersion"
+    //状态栏
+    api 'com.github.zackratos.ultimatebar:ultimatebar2:2.0.0'
 }
 repositories {
     mavenCentral()

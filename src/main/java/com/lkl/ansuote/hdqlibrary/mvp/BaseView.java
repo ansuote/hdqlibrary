@@ -109,28 +109,6 @@ public interface BaseView {
     void actionStart(Class<? extends Activity> cls);
 
     /**
-     * 开启只定界面
-     * @param cls
-     * @param flags
-     */
-    //void actionStart(Class<? extends Activity> cls, int flags);
-
-    /**
-     * 开启只定界面
-     * @param cls
-     * @param data
-     * @param requestCode
-     */
-    void actionStart(Class<? extends Activity> cls, Object data, int requestCode);
-
-    /**
-     * 开启只定界面
-     * @param cls
-     * @param data
-     */
-    void actionStart(Class<? extends Activity> cls, Object data);
-
-    /**
      * 显示主体布局
      */
     void showContentView();

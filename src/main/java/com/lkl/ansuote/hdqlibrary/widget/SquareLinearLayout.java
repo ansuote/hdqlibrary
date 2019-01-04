@@ -1,5 +1,6 @@
 package com.lkl.ansuote.hdqlibrary.widget;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -23,6 +24,7 @@ public class SquareLinearLayout extends LinearLayout{
         super(context, attrs, defStyleAttr);
     }
 
+    @TargetApi(21)
     public SquareLinearLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
     }
