@@ -38,4 +38,10 @@ public class BaseDialogParams {
      * 具体底部的距离 (如果是底部显示，则距离底部的距离)
      */
     public int marginBottom;
+
+    /**
+     * 透明度
+     */
+    public float alpha;
+
 }
