@@ -140,10 +140,10 @@ public class BaseDialog implements IBaseDialog{
             Window window = dialog.getWindow();
             if (null != window) {
                 WindowManager.LayoutParams wlp = window.getAttributes();
-                Display d = window.getWindowManager().getDefaultDisplay();
+                Display display = window.getWindowManager().getDefaultDisplay();
                 DisplayMetrics dm = new DisplayMetrics();
-                if (null != wlp && null != dm && null != d) {
-                    d.getMetrics(dm);
+                if (null != wlp && null != dm && null != display) {
+                    display.getMetrics(dm);
                     //获取屏幕宽
                     int width = dm.widthPixels;
                     //获取屏幕高度
