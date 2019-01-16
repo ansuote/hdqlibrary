@@ -105,6 +105,16 @@ public class BaseDialog implements IBaseDialog{
             return this;
         }
 
+        /**
+         * 设置透明度
+         * @param alpha
+         * @return
+         */
+        public Builder setAlpha(float alpha) {
+            mParams.alpha = alpha;
+            return this;
+        }
+
         public BaseDialog create() {
             final BaseDialog baseDialog = new BaseDialog(mParams);
             return baseDialog;
@@ -130,10 +140,10 @@ public class BaseDialog implements IBaseDialog{
             Window window = dialog.getWindow();
             if (null != window) {
                 WindowManager.LayoutParams wlp = window.getAttributes();
-                Display d = window.getWindowManager().getDefaultDisplay();
+                Display display = window.getWindowManager().getDefaultDisplay();
                 DisplayMetrics dm = new DisplayMetrics();
-                if (null != wlp && null != dm && null != d) {
-                    d.getMetrics(dm);
+                if (null != wlp && null != dm && null != display) {
+                    display.getMetrics(dm);
                     //获取屏幕宽
                     int width = dm.widthPixels;
                     //获取屏幕高度
@@ -144,6 +154,11 @@ public class BaseDialog implements IBaseDialog{
                     //设置新的高度
                     if (mBaseDialogParams.heightScale > 0) {
                         wlp.height = (int) (height * mBaseDialogParams.heightScale);
+                    }
+
+                    //设置透明度
+                    if (wlp.alpha > 0) {
+                        wlp.alpha = mBaseDialogParams.alpha;
                     }
 
                     //宽度按屏幕大小的百分比设置，这里我设置的是全屏显示
