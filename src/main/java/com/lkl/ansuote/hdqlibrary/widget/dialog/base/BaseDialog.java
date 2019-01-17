@@ -157,7 +157,7 @@ public class BaseDialog implements IBaseDialog{
                     }
 
                     //设置透明度
-                    if (wlp.alpha > 0) {
+                    if (mBaseDialogParams.alpha > 0) {
                         wlp.alpha = mBaseDialogParams.alpha;
                     }
 
