@@ -23,6 +23,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -637,4 +639,67 @@ public class Utils {
         return wrapList;
     }
 
+
+    /**
+     * 大数输出，3位逗号隔开的字符串，有小数的时候，保留两位有效数字
+     * @param money
+     * @return 12,000 或者 12,000.05
+     */
+    public static String getBigDecimalForSeparator(double money) {
+        try {
+            BigDecimal bigDecimal = new BigDecimal(money);
+            if (null != bigDecimal) {
+                //转化成不显示科学计数法
+                double moneyFormat = bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                String pattern = "#,###";
+                if ((moneyFormat - (int) moneyFormat) > 0) {
+                    //存在小数
+                    pattern = "#,###.00";
+                }
+                DecimalFormat df = new DecimalFormat(pattern);
+                return df.format(moneyFormat);
+            }
+
+        } catch (Exception e) {
+
+        }
+        return String.valueOf(money);
+    }
+
+    /**
+     * 大数输出 - 不使用科学技术法
+     * @param money
+     * @param newScale  保留小数点后几位
+     * @return
+     */
+    public static String getBigDecimal(double money, int newScale) {
+        try {
+
+            BigDecimal bigDecimal = new BigDecimal(money);
+            if (null != bigDecimal) {
+                return bigDecimal.setScale(newScale, BigDecimal.ROUND_HALF_UP).toPlainString();
+            }
+        } catch (Exception e) {
+        }
+
+        return "";
+    }
+
+    /**
+     * 大数输出 - 不使用科学技术法 默认保留两位
+     * @param money
+     * @return
+     */
+    public static String getBigDecimal(double money) {
+        try {
+            BigDecimal bigDecimal = new BigDecimal(money);
+            if (null != bigDecimal) {
+                return bigDecimal.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString();
+            }
+
+        } catch (Exception e) {
+        }
+
+        return "";
+    }
 }
