@@ -189,7 +189,8 @@
 -keep public class * extends com.chad.library.adapter.base.BaseViewHolder
 -keepclassmembers  class **$** extends com.chad.library.adapter.base.BaseViewHolder {
      <init>(...);
-}-keep class com.ch
+}
+-keep class com.ch
 
 
 -keep class com.newrelic.** { *; }

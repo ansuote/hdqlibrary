@@ -40,6 +40,11 @@ public class SoundPoolHelper {
     private int maxStream;
     private Map<String,Integer> ringtoneIds;
 
+    /**
+     * 左右声道音量默认比例 范围 0.0~1.0
+     */
+    private static float DEFAULT_VOLUME = 1.0f;
+
     /*方法*/
 
     public SoundPoolHelper() {
@@ -137,10 +142,27 @@ public class SoundPoolHelper {
      *  4) priority 指定播放声音的优先级，数值越大，优先级越高；
      *  5) loop 指定是否循环， 0 为不循环， -1 为循环；
      *  6) rate 指定播放的比率，数值可从 0.5 到 2 ， 1 为正常比率。
+     *
+     *  volume 左右声道音量的比例 0.0~1.0
      */
     public void play(@NonNull String ringtoneName, boolean isLoop) {
+        play(ringtoneName, isLoop, DEFAULT_VOLUME);
+    }
+
+    /**
+     *  int play(int soundID, float leftVolume, float rightVolume, int priority, int loop, float rate) ：
+     *  1)该方法的第一个参数指定播放哪个声音；
+     *  2) leftVolume 、
+     *  3) rightVolume 指定左、右的音量：
+     *  4) priority 指定播放声音的优先级，数值越大，优先级越高；
+     *  5) loop 指定是否循环， 0 为不循环， -1 为循环；
+     *  6) rate 指定播放的比率，数值可从 0.5 到 2 ， 1 为正常比率。
+     *
+     *  volume 左右声道音量的比例 0.0~1.0
+     */
+    public void play(@NonNull String ringtoneName, boolean isLoop, float volume) {
         if (ringtoneIds.containsKey(ringtoneName)) {
-            soundPool.play(ringtoneIds.get(ringtoneName),1,1,1,isLoop?-1:0,1);
+            soundPool.play(ringtoneIds.get(ringtoneName),volume,volume,1,isLoop?-1:0,1);
         }
     }
 
