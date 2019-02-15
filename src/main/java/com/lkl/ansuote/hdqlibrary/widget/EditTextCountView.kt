@@ -21,7 +21,7 @@ import com.lkl.ansuote.hdqlibrary.R
  * @author huangdongqiang
  * @date 12/02/2019
  */
-class EditTextCountView @JvmOverloads constructor(context: Context? = null, attrs: AttributeSet? = null, defStyleAttr: Int = com.lkl.ansuote.hdqlibrary.R.attr.editTextStyle): EditText(context, attrs, defStyleAttr) {
+class EditTextCountView @JvmOverloads constructor(context: Context? = null, attrs: AttributeSet? = null, defStyleAttr: Int = R.attr.editTextStyle): EditText(context, attrs, defStyleAttr) {
     private var mCountPaint: Paint
     private var mWidth: Float = 0f
     private var mHeight: Float = 0f
@@ -61,7 +61,7 @@ class EditTextCountView @JvmOverloads constructor(context: Context? = null, attr
 
         val currentLength = text.toString().length
         //数字文本如：3/30
-        var countText = currentLength.toString() + "/" + if (mMaxLength <= 0) {"∞"} else mMaxLength
+        val countText = currentLength.toString() + "/" + if (mMaxLength <= 0) {"∞"} else mMaxLength
 
         //文本的真实高度
         val contentTextHeight = lineHeight * lineCount.toFloat()
