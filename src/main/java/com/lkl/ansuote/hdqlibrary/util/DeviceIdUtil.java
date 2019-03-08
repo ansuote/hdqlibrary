@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -194,15 +193,12 @@ public class DeviceIdUtil {
      */
     private static void setDeviceIdToSdCardRoot(String deviceId) {
         try {
-            if (SDCardUtils.isSDCardEnable()) {
-                List<String> sdCardPaths = SDCardUtils.getSDCardPaths();
-                if (null != sdCardPaths && sdCardPaths.size() > 0) {
-                    String sdCardPath = sdCardPaths.get(0);
-                    File file = new File(sdCardPath, DEVICE_ID_FILE_NAME);
-                    boolean fileByDeleteOldFile = FileUtils.createFileByDeleteOldFile(file);
-                    if (fileByDeleteOldFile) {
-                        writeInstallationFile(file, deviceId);
-                    }
+            if (SDCardUtils.isSDCardEnableByEnvironment()) {
+                String sdCardPath = SDCardUtils.getSDCardPathByEnvironment();
+                File file = new File(sdCardPath, DEVICE_ID_FILE_NAME);
+                boolean fileByDeleteOldFile = FileUtils.createFileByDeleteOldFile(file);
+                if (fileByDeleteOldFile) {
+                    writeInstallationFile(file, deviceId);
                 }
             }
 
@@ -217,14 +213,11 @@ public class DeviceIdUtil {
      */
     private static String getDevicedIdFromSdCardRoot() {
         try {
-            if (SDCardUtils.isSDCardEnable()) {
-                List<String> sdCardPaths = SDCardUtils.getSDCardPaths();
-                if (null != sdCardPaths && sdCardPaths.size() > 0) {
-                    String sdCardPath = sdCardPaths.get(0);
-                    File file = new File(sdCardPath, DEVICE_ID_FILE_NAME);
-                    if (FileUtils.isFile(file)) {
-                        return readInstallationFile(file);
-                    }
+            if (SDCardUtils.isSDCardEnableByEnvironment()) {
+                String sdCardPath = SDCardUtils.getSDCardPathByEnvironment();
+                File file = new File(sdCardPath, DEVICE_ID_FILE_NAME);
+                if (FileUtils.isFile(file)) {
+                    return readInstallationFile(file);
                 }
             }
 
