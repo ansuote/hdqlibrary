@@ -432,6 +432,26 @@ public class Utils {
         return result;
     }
 
+    /**
+     * 合并字节数组
+     * @param values
+     * @return
+     */
+    public static byte[] concatByte(byte[]... values) {
+        int length_byte = 0;
+        for (int i = 0; i < values.length; i++) {
+            length_byte += values[i].length;
+        }
+        byte[] all_byte = new byte[length_byte];
+        int countLength = 0;
+        for (int i = 0; i < values.length; i++) {
+            byte[] b = values[i];
+            System.arraycopy(b, 0, all_byte, countLength, b.length);
+            countLength += b.length;
+        }
+        return all_byte;
+    }
+
     // 保存Bitmap到本地
     public static void saveBitmap(Bitmap bitmap, String filePath) {
         try {
